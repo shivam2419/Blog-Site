@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 48%;
+      height: 300px;
+      font-size: 16px;
+      padding: 10px;
+    }
+
+    .preview {
+      width: 48%;
+      height: 300px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #f9f9f9;
+      overflow-y: auto;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <textarea id="editor" placeholder="Write Markdown here..."></textarea>
+  </div>
+  <div class="preview" id="preview"></div>
+
+  <!-- Include the correct version of Marked.js -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // Get elements
+    const editor = document.getElementById("editor");
+    const preview = document.getElementById("preview");
+
+    // Function to convert Markdown to HTML and update preview
+    function updatePreview() {
+      const markdownText = editor.value; // Get Markdown text from textarea
+      const htmlContent = marked.parse(markdownText); // Use marked.parse() to convert Markdown to HTML
+      preview.innerHTML = htmlContent; // Update the preview div with HTML content
+    }
+
+    // Listen for the 'input' event on the textarea to update the preview in real-time
+    editor.addEventListener("input", updatePreview);
+
+  </script>
+</body>
+
+</html>
